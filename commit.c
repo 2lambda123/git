@@ -8,7 +8,6 @@
 #include "repository.h"
 #include "object-name.h"
 #include "object-store-ll.h"
-#include "pkt-line.h"
 #include "utf8.h"
 #include "diff.h"
 #include "revision.h"
@@ -23,7 +22,6 @@
 #include "advice.h"
 #include "refs.h"
 #include "commit-reach.h"
-#include "run-command.h"
 #include "setup.h"
 #include "shallow.h"
 #include "tree.h"
@@ -1783,7 +1781,7 @@ const char *find_commit_header(const char *msg, const char *key, size_t *out_len
  * Returns the number of bytes from the tail to ignore, to be fed as
  * the second parameter to append_signoff().
  */
-size_t ignore_non_trailer(const char *buf, size_t len)
+size_t ignored_log_message_bytes(const char *buf, size_t len)
 {
 	size_t boc = 0;
 	size_t bol = 0;

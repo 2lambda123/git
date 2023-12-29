@@ -15,10 +15,8 @@
 #include "pager.h"
 #include "commit.h"
 #include "sequencer.h"
-#include "tag.h"
 #include "run-command.h"
 #include "hook.h"
-#include "exec-cmd.h"
 #include "utf8.h"
 #include "cache-tree.h"
 #include "diff.h"
@@ -39,7 +37,6 @@
 #include "notes-utils.h"
 #include "sigchain.h"
 #include "unpack-trees.h"
-#include "worktree.h"
 #include "oidmap.h"
 #include "oidset.h"
 #include "commit-slab.h"
@@ -340,7 +337,7 @@ static int has_conforming_footer(struct strbuf *sb, struct strbuf *sob,
 	if (ignore_footer)
 		sb->buf[sb->len - ignore_footer] = saved_char;
 
-	if (info.trailer_start == info.trailer_end)
+	if (info.trailer_block_start == info.trailer_block_end)
 		return 0;
 
 	for (i = 0; i < info.trailer_nr; i++)

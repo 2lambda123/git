@@ -1,19 +1,14 @@
 #include "builtin.h"
 #include "config.h"
-#include "commit.h"
 #include "hex.h"
-#include "refs.h"
 #include "pkt-line.h"
-#include "sideband.h"
 #include "run-command.h"
 #include "remote.h"
 #include "connect.h"
 #include "send-pack.h"
 #include "quote.h"
 #include "transport.h"
-#include "version.h"
 #include "oid-array.h"
-#include "gpg-interface.h"
 #include "gettext.h"
 #include "protocol.h"
 #include "parse-options.h"
@@ -205,7 +200,7 @@ int cmd_send_pack(int argc, const char **argv, const char *prefix)
 		OPT_BOOL(0, "stateless-rpc", &stateless_rpc, N_("use stateless RPC protocol")),
 		OPT_BOOL(0, "stdin", &from_stdin, N_("read refs from stdin")),
 		OPT_BOOL(0, "helper-status", &helper_status, N_("print status from remote helper")),
-		OPT_CALLBACK_F(0, CAS_OPT_NAME, &cas, N_("<refname>:<expect>"),
+		OPT_CALLBACK_F(0, "force-with-lease", &cas, N_("<refname>:<expect>"),
 		  N_("require old value of ref to be at this value"),
 		  PARSE_OPT_OPTARG, parseopt_push_cas_option),
 		OPT_BOOL(0, TRANS_OPT_FORCE_IF_INCLUDES, &force_if_includes,
